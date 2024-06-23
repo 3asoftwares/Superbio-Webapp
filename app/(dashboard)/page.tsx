@@ -109,9 +109,9 @@ export default function Home() {
                             <span className='text-[#7D7D7D] text-sm'>Description</span>
                         </div>
                         {selectType === 'influncer' && (
-                            <button onClick={() => dispatch(setCampaignType('influncer'))} className='flex items-center justify-end px-3'>
+                            <button className='flex items-center justify-end px-3'>
                                 <div className={`w-full flex gap-3 justify-end ${selectType === 'influncer' ? 'text-white' : 'text-black'}`}>
-                                    <span className='hidden sm:flex'>Get Started</span>
+                                    <span className='hidden sm:flex'>Coming Soon</span>
                                     <svg width='24px' height='24px' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg' fill='none'>
                                         <g id='SVGRepo_bgCarrier' stroke-width='0'></g>
                                         <g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>

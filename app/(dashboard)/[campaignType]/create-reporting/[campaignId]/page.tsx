@@ -177,7 +177,6 @@ export default function CreateReporting() {
             selSheetData.forEach((item, index) => {
                 const url = `https://docs.google.com/spreadsheets/d/${item?.sheetId}`;
                 promises.push(SheetNetworkService.instance.getSheet(url));
-                console.log(item);
                 data.push({
                     ...getSheetInfo(),
                     index: index + 1,

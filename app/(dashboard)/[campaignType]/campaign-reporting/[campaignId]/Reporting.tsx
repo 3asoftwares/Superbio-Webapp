@@ -50,7 +50,6 @@ export default function Reporting(props: IReportingProps) {
 
   return (
     <div>
-      {" "}
       {screenWidth > 1280 && (
         <div className="flex my-6 flex-col md:flex-row flex-wrap gap-5 md:gap-3">
           <div className="w-full md:w-[calc(33.3%-8px)] flex flex-col">

@@ -7,11 +7,6 @@ import { useAppSelector } from "@/context";
 
 interface FilterHandlerProps {
   total: number;
-  // filters: {
-  //     filter: string;
-  //     value: string;
-  // }
-  searchRoot: SearchParams;
   shouldShowSort: boolean;
   query: any;
 }
@@ -28,14 +23,11 @@ const defFilterOptions: AvailableFilters = {
 
 export default function FilterHandler({
   total,
-  searchRoot,
   shouldShowSort,
   query
 }: FilterHandlerProps) {
   const searchParams = useSearchParams();
   const { filters } = useAppSelector((state) => state.campaign);
-
-  console.log("searchParams dff", searchParams.get("openFilter"));
   const data = new CampaignReportingFilter(filters);
   const filtersOptions = data.getAvailableFilters();
   const openFilter =

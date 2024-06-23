@@ -44,6 +44,8 @@ interface IColumnResponse {
     data: IColumn[];
     meta: {
         total: number;
+        stories: number;
+        private: number;
         page: number;
         limit: number;
         totalLikes: number;
@@ -61,7 +63,7 @@ interface IColumnResponse {
             reposts: string;
             views: string;
             bookmarks: string;
-        }
+        };
     };
 }
 
@@ -137,7 +139,6 @@ export default class SheetNetworkService extends BaseNetworkFramework implements
             if (token) {
                 header["Authorization"] = `Bearer ${token}`;
             }
-            console.log("header", params);
             if (!header.Authorization.includes("undefined")) {
                 const res = await axios.get<IColumnResponse>(`${this.url}/sheet/get-by-campaign-id/${campaignId}`, {
                     headers: header,

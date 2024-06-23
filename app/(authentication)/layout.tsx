@@ -49,7 +49,6 @@ export default function RootLayout({
 
   useGoogleOneTapLogin({
     onSuccess: (creads) => {
-      console.log(creads);
       dispatch(
         loginUsingGoogle({
           token: creads.credential as string,

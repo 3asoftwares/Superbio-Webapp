@@ -4,10 +4,6 @@ export const FILTERS = [
         key: "postedAt",
     },
     {
-        name: "Platforms",
-        key: "platform",
-    },
-    {
         name: "Sheets",
         key: "internalSheetId",
     },
@@ -183,13 +179,11 @@ export default class CampaignReportingFilter {
                 this.availableSubcategories = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase() === 'subcategory').map(item => item.value);
             } else if (filter === 'posttype') {
                 let valueTypes = value.split('_');
-                console.log(valueTypes);
                 this.availableValueTypes = this.filters.map(item => item.postType ? item.postType : []).reduce((a, b) => a.concat(b), []);
                 this.filters = this.filters.filter(item => item.postType ? valueTypes.map(other => item?.postType?.includes(other)).includes(true) : false);
                 this.availablePlatforms = this.filters.map(item => item.platforms).reduce((a, b) => a.concat(b), []);
                 this.availableDates = this.filters.map(item => item.value);
                 this.availableSheets = this.filters.map(item => item.sheets ? item.sheets : []).reduce((a, b) => a.concat(b), []);
-                // this.availableOthers = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []);
                 this.availablePhases = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase().includes('phase')).map(item => item.value);
                 this.availableCategrories = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase() === 'category').map(item => item.value);
                 this.availableSubcategories = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase() === 'subcategory').map(item => item.value);
@@ -199,7 +193,6 @@ export default class CampaignReportingFilter {
                 this.filters = this.filters.filter(item => dates.includes(item.value));
                 this.availablePlatforms = this.filters.map(item => item.platforms).reduce((a, b) => a.concat(b), []);
                 this.availableSheets = this.filters.map(item => item.sheets ? item.sheets : []).reduce((a, b) => a.concat(b), []);
-                // this.availableOthers = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []);
                 this.availableValueTypes = this.filters.map(item => item.postType ? item.postType : []).reduce((a, b) => a.concat(b), []);
                 this.availablePhases = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase().includes('phase')).map(item => item.value);
                 this.availableCategrories = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase() === 'category').map(item => item.value);
@@ -207,13 +200,11 @@ export default class CampaignReportingFilter {
             } else {
                 this.availablePlatforms = this.filters.map(item => item.platforms).reduce((a, b) => a.concat(b), []);
                 this.availableSheets = this.filters.map(item => item.sheets ? item.sheets : []).reduce((a, b) => a.concat(b), []);
-                // this.availableOthers = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []);
                 this.availableDates = this.filters.map(item => item.value);
                 this.availableValueTypes = this.filters.map(item => item.postType ? item.postType : []).reduce((a, b) => a.concat(b), []);
                 this.availablePhases = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase().includes('phase')).map(item => item.value);
                 this.availableCategrories = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase() === 'category').map(item => item.value);
                 this.availableSubcategories = this.filters.map(item => item.others ? item.others : []).reduce((a, b) => a.concat(b), []).filter(item => item.columnName.toLowerCase() === 'subcategory').map(item => item.value);
-                console.log("default");
             }   
 
         }

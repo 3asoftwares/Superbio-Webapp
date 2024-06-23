@@ -129,7 +129,6 @@ export default function SocialCard({
     }
 
     const posted = new Date(parseInt(postedAt));
-console.log(item)
     return (
         <div className='w-full mt-4'>
             <div className='flex bg-[#FAFAFA] rounded-xl p-4 flex-col '>
