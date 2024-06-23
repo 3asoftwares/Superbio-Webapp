@@ -1,11 +1,12 @@
 'use client';
-import { useAppSelector } from '@/context';
+import { useAppDispatch, useAppSelector } from '@/context';
 import { deleteCookie } from 'cookies-next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaUsers } from 'react-icons/fa';
 import { HiOutlineQueueList } from 'react-icons/hi2';
 import DynamicLogo from '../DynamicLogo';
+import { setCampaignType } from '@/context/user';
 
 interface SideBarProps {
     sidebarOpen?: boolean;
@@ -40,6 +41,7 @@ const items = [
 
 export default function SideBar({ sidebarOpen, onCloseSidebar }: SideBarProps) {
     const path = usePathname();
+    const dispatch = useAppDispatch();
     const { user } = useAppSelector((state) => state.user);
 
     return (
@@ -134,6 +136,7 @@ export default function SideBar({ sidebarOpen, onCloseSidebar }: SideBarProps) {
                             deleteCookie('token');
                             deleteCookie('user');
                             window.location.reload();
+                            dispatch(setCampaignType(''));
                         }}
                         className='text-[#CCCCCC] group-hover:text-black text-xs'>
                         <svg width='26' height='26' viewBox='0 0 24 24' fill='none' className='mr-2' xmlns='http://www.w3.org/2000/svg'>
