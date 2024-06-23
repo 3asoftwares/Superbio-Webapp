@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/context';
-import { resetCampaignStore, setLoading, setMeta } from '@/context/campaign';
+import { setLoading, setMeta } from '@/context/campaign';
 import { useSnackbar } from 'notistack';
 import copy from 'copy-to-clipboard';
 import { getCampaigns } from '@/context/campaign/network';

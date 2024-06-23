@@ -134,7 +134,6 @@ console.log(item)
         <div className='w-full mt-4'>
             <div className='flex bg-[#FAFAFA] rounded-xl p-4 flex-col '>
                 <div className='flex items-center justify-between mb-3'>
-                    
                     <div className='flex items-center gap-2 px-1 text-[#959595]'>
                         <div className='flex justify-center items-center w-9 h-9 px-3 bg-[#DAE4FF] text-sm text-[#033DD0] py-1 rounded-full'>{index + 1}</div>
                         {postedAt && <span>Posted on {dayjs(posted).format('D MMM, YYYY')}</span>}
@@ -159,16 +158,13 @@ console.log(item)
 
                 <div className='flex gap-3 mb-3'>
                     <div className='flex flex-wrap gap-3'>
-                        {Object.keys(item.analytics)?.map(
-                            (data: any) =>
-                                (
-                                    <div key={uuidv4()} className='flex flex-col'>
-                                        <span className='bg-[#F5F8FF] captilize text-[#0151A0] text-sm px-3 py-1 rounded-2xl'>
-                                            {data}: {item.analytics[data]}
-                                        </span>
-                                    </div>
-                                )
-                        )}
+                        {Object.keys(item.analytics)?.map((data: any) => (
+                            <div key={uuidv4()} className='flex flex-col'>
+                                <span className='bg-[#F5F8FF] captilize text-[#0151A0] text-sm px-3 py-1 rounded-2xl'>
+                                    {data}: {item.analytics[data]}
+                                </span>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 {type === 'instagram' && postType !== 'public' ? (

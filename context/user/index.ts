@@ -16,18 +16,19 @@ export interface IUserState {
         total: number;
         page: number;
         limit: number;
-    }
+    };
+    campaignType: string;
 }
 
 
 let initialState: IUserState = {
     user: {
-        name: "",
-        email: "",
-        password: "",
-        role: "",
-        mobileNo: "",
-        profilePic: "",
+        name: '',
+        email: '',
+        password: '',
+        role: '',
+        mobileNo: '',
+        profilePic: '',
     },
     token: null,
     loading: false,
@@ -36,11 +37,12 @@ let initialState: IUserState = {
         total: 0,
         page: 0,
         limit: 0,
-    }
-}
+    },
+    campaignType: ''
+};
 
 export const userSlice = createSlice({
-    name: "user",
+    name: 'user',
     initialState,
     reducers: {
         setUser: (state, action) => {
@@ -54,7 +56,10 @@ export const userSlice = createSlice({
         },
         setUserMeta: (state, action) => {
             state.meta = action.payload;
-        }
+        },
+        setCampaignType: (state, action) => {
+            state.campaignType = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(login.pending, (state) => {
@@ -98,7 +103,7 @@ export const userSlice = createSlice({
         builder.addCase(loginUsingGoogle.rejected, (state) => {
             state.loading = false;
         });
-    }
+    },
 });
 
-export const { setUser, setToken, setMembers, setUserMeta } = userSlice.actions;
+export const { setUser, setToken, setMembers, setUserMeta, setCampaignType } = userSlice.actions;
