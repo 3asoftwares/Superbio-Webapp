@@ -1,29 +1,33 @@
 export const FILTERS = [
     {
-        name: "Dates",
-        key: "postedAt",
+        name: 'Dates',
+        key: 'postedAt',
     },
     {
-        name: "Sheets",
-        key: "internalSheetId",
+        name: 'Sheets',
+        key: 'internalSheetId',
     },
     {
-        name: "Types",
-        key: "postType",
+        name: 'Platform',
+        key: 'platform',
     },
     {
-        name: "Phases",
-        key: "phase",
+        name: 'Types',
+        key: 'postType',
     },
     {
-        name: "Category",
-        key: "category",
+        name: 'Phases',
+        key: 'phase',
     },
     {
-        name: "Sub Category",
-        key: "subCategory",
+        name: 'Category',
+        key: 'category',
     },
-]
+    {
+        name: 'Sub Category',
+        key: 'subCategory',
+    },
+];
 
 export default class CampaignReportingFilter {
     private filters: FilterKeys[] = [];

@@ -230,7 +230,7 @@ export default async function CampaignReporting({ searchParams, params }: { sear
                                     !token ? '3' : '6'
                                 } w-full gap-4`}>
                                 {summary.length > 0 &&
-                                    summary.map((item) => (
+                                    summary.filter((el)=>el.count !== 0).map((item) => (
                                         <div
                                             key={uuidv4()}
                                             className={`flex justify-start flex-col sm:justify-center sm:py-4 ${item.color} w-full px-4 py-4 sm:px-4 mx-auto sm:mx-0 rounded-xl bg-opacity-20`}>

@@ -61,8 +61,6 @@ export default function FilterUi(props: FilterUiProps) {
             return;
         }
         setFiltersOptions(filterOptions);
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters]);
 
     const selectFilter = (checked: boolean, key: string, value: string) => {
@@ -119,6 +117,7 @@ export default function FilterUi(props: FilterUiProps) {
             panel.classList.toggle('hidden');
         }
     };
+
     const resetFilters = () => {
         setFilters({});
         const url = new URL(window.location.href);
