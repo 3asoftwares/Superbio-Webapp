@@ -158,7 +158,7 @@ export default function SocialCard({
                 <div className='flex gap-3 mb-3'>
                     <div className='flex flex-wrap gap-3'>
                         {Object.keys(item.analytics)
-                            ?.filter((item) => !item.toLowerCase().includes('plays') && !item.toLowerCase().includes('isLinkDeleted'))
+                            ?.filter((item) => !item.toLowerCase().includes('plays') && !item.toLowerCase().includes('islinkdeleted'))
                             .map((data: any) => (
                                 <div key={uuidv4()} className='flex flex-col'>
                                     <span className='bg-[#F5F8FF] captilize text-[#0151A0] text-sm px-3 py-1 rounded-2xl'>
