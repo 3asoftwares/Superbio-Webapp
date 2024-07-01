@@ -22,6 +22,19 @@ export function fileToBase64(file: any) {
     });
 }
 
+export const calculateSummary = (count: number) => {
+    let calSum = 0 as any;
+    if (count !== undefined && count !== null && !isNaN(count)) {
+        calSum = (count / 1000000).toFixed(1) + 'M';
+        if (count > 1000 && count < 1000000) {
+            calSum = (count / 1000).toFixed(1) + 'K';
+        } else if (count < 1000) {
+            calSum = count;
+        }
+    }
+    return calSum;
+};
+
 export function Tweet({ tweetID }: TweetProps) {
     const [isLoading, setIsLoading] = useState(true);
 
@@ -48,15 +61,7 @@ interface TweetProps {
     tweetID: string;
 }
 
-export default function SocialCard({
-    item,
-    isPublic,
-    index,
-}: {
-    item: any;
-    isPublic: boolean;
-    index: number;
-}) {
+export default function SocialCard({ item, isPublic, index }: { item: any; isPublic: boolean; index: number }) {
     const postedAt = item?.postedAt?.$date?.$numberLong;
     const link = item.socialLink;
     const postType = item.postType;
@@ -162,7 +167,7 @@ export default function SocialCard({
                             .map((data: any) => (
                                 <div key={uuidv4()} className='flex flex-col'>
                                     <span className='bg-[#F5F8FF] captilize text-[#0151A0] text-sm px-3 py-1 rounded-2xl'>
-                                        {data}: {item.analytics[data]}
+                                        {data}: {calculateSummary(item.analytics[data])}
                                     </span>
                                 </div>
                             ))}
