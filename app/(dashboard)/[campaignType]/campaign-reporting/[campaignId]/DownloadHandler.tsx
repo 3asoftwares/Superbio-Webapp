@@ -48,9 +48,9 @@ export default function DownloadHandler(props: DownloadHandlerProps) {
 
   const setLastRefresh = () => {
     const currentAt = dayjs(new Date()) as any;
-    if (columns?.length > 0 && meta !== undefined) {
+    if (meta !== undefined) {
       const minutes = currentAt.diff(
-        dayjs(parseInt(columns[0]?.updatedAt?.$date?.$numberLong.toString())),
+        dayjs(parseInt(meta?.updatedAt?.$date?.$numberLong.toString())),
         "minutes",
       );
       setDiffInMin(isNaN(minutes) ? 0 : minutes);
@@ -86,7 +86,7 @@ export default function DownloadHandler(props: DownloadHandlerProps) {
           } else {
             setGenerateStatus(resp[0]?.status);
           }
-        } else if (columns?.length > 0 && meta !== undefined) {
+        } else if (meta !== undefined) {
           setLastRefresh();
         }
       })
@@ -103,8 +103,6 @@ export default function DownloadHandler(props: DownloadHandlerProps) {
     } else {
       setLastRefresh();
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columns]);
 
   const gradients = [
