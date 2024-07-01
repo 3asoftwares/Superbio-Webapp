@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SheetNetworkService from '@/services/sheet.service';
 import { cookies } from 'next/headers';
 import { Params, SearchParams } from './layout';
-import { v4 as uuidv4 } from 'uuid';
 import { colors, icons } from './icons-colors';
 import Link from 'next/link';
-import FilterHandler from './FilterHandler';
-import Reporting from './Reporting';
 import DownloadHandler from './DownloadHandler';
 import CampaignReportingFilter from './filter';
 import FilterUi from './FilterUi';
@@ -21,6 +18,7 @@ interface ISummary {
     basedOn: number | JSX.Element;
 }
 
+let platformType = 'all';
 export default async function CampaignReporting({ searchParams, params }: { searchParams: SearchParams; params: Params }) {
     const sort = searchParams.sort ? searchParams.sort : 'analytics.likes';
     const order = searchParams.order ? parseInt(searchParams.order) : -1;
@@ -183,86 +181,7 @@ export default async function CampaignReporting({ searchParams, params }: { sear
                         summary={summary}
                     />
                 )}
-                {res.data && res.data.length > 0 && (
-                    <div className='flex items-center justify-between gap-3 text-[#959595] sm:text-center md:text-left text-sm sm:text-sm mt-4'>
-                        <div className='flex gap-3'>
-                            {res.meta?.total && (
-                                <div className='flex flex-col text-sm w-20'>
-                                    {res.meta && res.meta?.total > 0 && (
-                                        <>
-                                            <span className='text-black font-semibold'>Total</span>
-                                            <span className='text-[#959595]'>{res.meta?.total} posts</span>
-                                        </>
-                                    )}
-                                </div>
-                            )}
-                            {res.meta?.stories && (
-                                <div className='flex flex-col text-sm w-20'>
-                                    {res.meta && res.meta?.total > 0 && (
-                                        <>
-                                            <span className='text-black font-semibold'>Stories</span>
-                                            <span className='text-[#959595]'>{res.meta?.stories} posts</span>
-                                        </>
-                                    )}
-                                </div>
-                            )}
-                            {res.meta?.private && (
-                                <div className='flex flex-col text-sm w-20'>
-                                    {res.meta && res.meta?.total > 0 && (
-                                        <>
-                                            <span className='text-black font-semibold'>Private</span>
-                                            <span className='text-[#959595]'>{res.meta?.private} posts</span>
-                                        </>
-                                    )}
-                                </div>
-                            )}
-                            <FilterPlatform filtersDefault={filters} filterOptn={filterOptn} />
-                        </div>
-                        <FilterHandler total={res.meta.total} shouldShowSort={!shouldRefresh} query={query} />
-                    </div>
-                )}
-
-                {res.meta && res.data.length > 0 && (
-                    <div className='flex'>
-                        <div className='flex w-full flex-col '>
-                            <div
-                                className={`mt-3 sm:mt-6 grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-${
-                                    !token ? '3' : '6'
-                                } w-full gap-4`}>
-                                {summary.length > 0 &&
-                                    summary.filter((el)=>el.count !== 0).map((item) => (
-                                        <div
-                                            key={uuidv4()}
-                                            className={`flex justify-start flex-col sm:justify-center sm:py-4 ${item.color} w-full px-4 py-4 sm:px-4 mx-auto sm:mx-0 rounded-xl bg-opacity-20`}>
-                                            <div className='flex gap-2 justify-between sm:w-auto'>
-                                                <div className={`flex items-center justify-center ${item.color} bg-opacity-60 w-10 h-10 mr-3 rounded-full`}>
-                                                    {item.icon}
-                                                </div>
-                                                <div className='flex gap-2'>
-                                                    <p className='text-2xl text-black-100'>{item?.count}</p>
-                                                </div>
-                                            </div>
-                                            <div className='flex mr-3 h-9 items-end justify-between w-full'>
-                                                <p className='text-xs mt-1 text-black-500'>
-                                                    <span className='capitalize'>{item.title}</span> from {item.basedOn} posts
-                                                </p>
-                                            </div>
-                                        </div>
-                                    ))}
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                {res.data && res.data.length > 0 && (
-                    <Reporting
-                        campaignId={params.campaignId}
-                        initialColumns={res.data}
-                        meta={query}
-                        isPublic={searchParams.isPublic ? searchParams.isPublic : false}
-                        total={res.meta.total}
-                    />
-                )}
+                <FilterPlatform res={res} token={token} query={query} params={params} sParams={searchParams} summary={summary} shouldRefresh={shouldRefresh} filtersDefault={filters} filterOptn={filterOptn} />
             </div>
         </div>
     );

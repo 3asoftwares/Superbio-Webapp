@@ -23,7 +23,6 @@ export default function FilterUi(props: FilterUiProps) {
 
     React.useEffect(() => {
         dispatch(setFitlersState(props.filtersDefault));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     React.useEffect(() => {
@@ -45,7 +44,6 @@ export default function FilterUi(props: FilterUiProps) {
             }
             setFilters(filterObj);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     React.useEffect(() => {
